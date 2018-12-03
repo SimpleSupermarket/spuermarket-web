@@ -9,9 +9,10 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import org.apache.ibatis.annotations.UpdateProvider;
 import org.apache.ibatis.type.JdbcType;
+import org.simplesupermarket.web.db.ObjectCrudMapper;
 import org.simplesupermarket.web.db.model.User;
 
-public interface UserMapper {
+public interface UserMapper  extends ObjectCrudMapper<User> {
     @Delete({
         "delete from smbms_user",
         "where id = #{id,jdbcType=BIGINT}"
