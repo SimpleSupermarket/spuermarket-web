@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
  * @date 2018年12月03日
  * @version 1.0
  */
-public class GoodsController {
- private static final Logger LOGGER = LoggerFactory.getLogger(GoodsController.class);
+public interface GoodsController {
+
+
 }

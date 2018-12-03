@@ -12,7 +12,10 @@ import org.apache.ibatis.type.JdbcType;
 import org.simplesupermarket.web.db.ObjectCrudMapper;
 import org.simplesupermarket.web.db.model.Address;
 import org.simplesupermarket.web.db.model.Bill;
+import org.springframework.stereotype.Repository;
 
+
+@Repository
 public interface BillMapper extends ObjectCrudMapper<Bill> {
     @Delete({
         "delete from smbms_bill",
