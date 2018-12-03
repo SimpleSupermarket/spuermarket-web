@@ -1,8 +1,7 @@
-package org.simplesupermarket.web.config;
+package org.simplesupermarket.web.auth;
 
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.simplesupermarket.web.app.service.OwnService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -11,7 +10,6 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,12 +23,12 @@ import java.util.Collection;
  */
 @RestController
 @RequestMapping("/login")
-public class UserVerificationConfig implements AuthenticationProvider {
+public class UserVerificationHandle implements AuthenticationProvider {
 
 
 
-   // @Autowired
-    //private AdminService adminService;
+    @Autowired
+    private OwnService ownService;
 
     /**
      * 验证用户名密码
@@ -46,7 +44,7 @@ public class UserVerificationConfig implements AuthenticationProvider {
         UserDetails userDetials;
         try {
             //TODO 查询管理者用户
-            userDetials = adminService.getManageUserLogin(username,password);
+            userDetials = ownService.getManageUserLogin(username,password);
         } catch (UsernameNotFoundException e) {
             return null;
         }

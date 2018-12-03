@@ -1,4 +1,4 @@
-package org.simplesupermarket.web.config;
+package org.simplesupermarket.web.auth;
 
 
 import org.slf4j.Logger;
@@ -23,13 +23,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 
     @Autowired
-    UserVerificationConfig userVerificationConfig;
+    UserVerificationHandle UserVerificationHandle;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         //设置登录拦截验证跳转
         http.authorizeRequests()
-                .antMatchers("/login/*", "/login").permitAll()
+                .antMatchers("/login/*", "/login","/*","/bill").permitAll()
                 .anyRequest().authenticated()
                 .and().formLogin().loginProcessingUrl("/login").loginPage("/login/NoLogin").failureForwardUrl("/login/loginNO").successForwardUrl("/login/loginOK").passwordParameter("password").usernameParameter("username")
                 .permitAll()
@@ -44,7 +44,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         // auth.userDetailsService(userService);
         //设置登录验证规则为 UserVerificationConfig 类
-        auth.authenticationProvider(userVerificationConfig);
+        auth.authenticationProvider(UserVerificationHandle);
     }
 
 
