@@ -16,20 +16,12 @@ public interface AddressMapper extends ObjectCrudMapper<Address> {
 
     @Insert({
         "insert into smbms_address (id, contact, ",
-        "addressDesc, postCode, ",
-        "tel, createdBy, creationDate, ",
-        "modifyBy, modifyDate, ",
-        "userId)",
-        "values (#{id,jdbcType=BIGINT}, #{contact,jdbcType=VARCHAR}, ",
-        "#{addressdesc,jdbcType=VARCHAR}, #{postcode,jdbcType=VARCHAR}, ",
-        "#{tel,jdbcType=VARCHAR}, #{createdby,jdbcType=BIGINT}, #{creationdate,jdbcType=TIMESTAMP}, ",
-        "#{modifyby,jdbcType=BIGINT}, #{modifydate,jdbcType=TIMESTAMP}, ",
-        "#{userid,jdbcType=BIGINT})"
+        "addressDesc, postCode, tel, createdBy, creationDate, ",
+        "modifyBy, modifyDate, userId)",
+        "values (#{id}, #{contact}, #{addressdesc}, #{postcode}, ",
+        "#{tel}, #{createdby}, #{creationdate}, #{modifyby}, #{modifydate},#{userid})"
     })
     int insert(Address record);
-
-    @InsertProvider(type=AddressSqlProvider.class, method="insertSelective")
-    int insertSelective(Address record);
 
     @Select({
         "select",
@@ -52,8 +44,6 @@ public interface AddressMapper extends ObjectCrudMapper<Address> {
     })
     Address selectByPrimaryKey(Long id);
 
-    @UpdateProvider(type=AddressSqlProvider.class, method="updateByPrimaryKeySelective")
-    int updateByPrimaryKeySelective(Address record);
 
     @Update({
         "update smbms_address",

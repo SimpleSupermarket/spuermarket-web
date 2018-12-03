@@ -1,4 +1,4 @@
-package org.simplesupermarket.web.app.controller;
+package org.simplesupermarket.web.app.controller.common;
 
 import org.simplesupermarket.web.app.service.AbstractSuperServiceImpl;
 import org.slf4j.Logger;
@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -21,12 +20,8 @@ import java.util.List;
 public abstract class AbstractSuperController<T> {
     private static final Logger LOGGER = LoggerFactory.getLogger(AbstractSuperController.class);
 
+    @Autowired
     protected AbstractSuperServiceImpl<T> service;
-    protected AbstractSuperController(Object service){
-        if(service instanceof  AbstractSuperServiceImpl) {
-            this.service = (AbstractSuperServiceImpl<T>) service;
-        }
-    }
 
     @PostMapping
     public Boolean add(T data) {

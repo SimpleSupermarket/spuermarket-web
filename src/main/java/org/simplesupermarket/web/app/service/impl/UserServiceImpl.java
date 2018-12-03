@@ -20,11 +20,11 @@ import java.util.List;
  * @version 1.0
  */
 @Service
-public class UserServiceImpl extends AbstractSuperServiceImpl<Bill> implements OwnService,UserService {
+public class UserServiceImpl extends AbstractSuperServiceImpl<User> implements OwnService,UserService {
  private static final Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class);
 
     @Override
-    public List<Bill> getList() {
+    public List<User> getList() {
         return null;
     }
 

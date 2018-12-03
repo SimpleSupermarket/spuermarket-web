@@ -11,7 +11,9 @@ import org.apache.ibatis.annotations.UpdateProvider;
 import org.apache.ibatis.type.JdbcType;
 import org.simplesupermarket.web.db.ObjectCrudMapper;
 import org.simplesupermarket.web.db.model.Role;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface RoleMapper  extends ObjectCrudMapper<Role> {
     @Delete({
         "delete from smbms_role",
@@ -31,8 +33,7 @@ public interface RoleMapper  extends ObjectCrudMapper<Role> {
     })
     int insert(Role record);
 
-    @InsertProvider(type=RoleSqlProvider.class, method="insertSelective")
-    int insertSelective(Role record);
+
 
     @Select({
         "select",
@@ -51,8 +52,7 @@ public interface RoleMapper  extends ObjectCrudMapper<Role> {
     })
     Role selectByPrimaryKey(Long id);
 
-    @UpdateProvider(type=RoleSqlProvider.class, method="updateByPrimaryKeySelective")
-    int updateByPrimaryKeySelective(Role record);
+
 
     @Update({
         "update smbms_role",

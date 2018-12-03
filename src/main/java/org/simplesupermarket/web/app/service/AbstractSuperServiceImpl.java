@@ -21,8 +21,6 @@ public abstract class AbstractSuperServiceImpl<T> {
     protected ObjectCrudMapper<T> mapper;
 
 
-
-
     public Boolean add(T data) {
         return mapper.insert(data) == 1;
     }
@@ -36,10 +34,7 @@ public abstract class AbstractSuperServiceImpl<T> {
     }
 
     public T get(Long id) {
-        if(LOGGER.isInfoEnabled()) {
-            LOGGER.info(this.getClass().toString());
-            LOGGER.info(this.mapper.getClass().toString());
-        }
+        if(LOGGER.isInfoEnabled()) { }
         return mapper.selectByPrimaryKey(id);
     }
 

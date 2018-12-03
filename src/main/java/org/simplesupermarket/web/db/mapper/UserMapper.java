@@ -11,7 +11,9 @@ import org.apache.ibatis.annotations.UpdateProvider;
 import org.apache.ibatis.type.JdbcType;
 import org.simplesupermarket.web.db.ObjectCrudMapper;
 import org.simplesupermarket.web.db.model.User;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface UserMapper  extends ObjectCrudMapper<User> {
     @Delete({
         "delete from smbms_user",
@@ -37,8 +39,7 @@ public interface UserMapper  extends ObjectCrudMapper<User> {
     })
     int insert(User record);
 
-    @InsertProvider(type=UserSqlProvider.class, method="insertSelective")
-    int insertSelective(User record);
+
 
     @Select({
         "select",
@@ -65,8 +66,7 @@ public interface UserMapper  extends ObjectCrudMapper<User> {
     })
     User selectByPrimaryKey(Long id);
 
-    @UpdateProvider(type=UserSqlProvider.class, method="updateByPrimaryKeySelective")
-    int updateByPrimaryKeySelective(User record);
+
 
     @Update({
         "update smbms_user",

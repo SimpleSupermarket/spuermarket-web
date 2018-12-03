@@ -41,8 +41,6 @@ public interface BillMapper extends ObjectCrudMapper<Bill> {
     })
     int insert(Bill record);
 
-    @InsertProvider(type=BillSqlProvider.class, method="insertSelective")
-    int insertSelective(Bill record);
 
     @Select({
         "select",
@@ -68,8 +66,6 @@ public interface BillMapper extends ObjectCrudMapper<Bill> {
     })
     Bill selectByPrimaryKey(Long id);
 
-    @UpdateProvider(type=BillSqlProvider.class, method="updateByPrimaryKeySelective")
-    int updateByPrimaryKeySelective(Bill record);
 
     @Update({
         "update smbms_bill",

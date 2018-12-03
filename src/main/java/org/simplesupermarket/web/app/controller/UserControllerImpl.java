@@ -1,6 +1,5 @@
-package org.simplesupermarket.web.app.controller.impl;
-import org.simplesupermarket.web.app.controller.AbstractSuperController;
-import org.simplesupermarket.web.app.service.AbstractSuperServiceImpl;
+package org.simplesupermarket.web.app.controller;
+import org.simplesupermarket.web.app.controller.common.AbstractSuperController;
 import org.simplesupermarket.web.app.service.UserService;
 import org.simplesupermarket.web.db.model.User;
 import org.slf4j.Logger;
@@ -21,6 +20,6 @@ public class UserControllerImpl extends AbstractSuperController<User> {
  private static final Logger LOGGER = LoggerFactory.getLogger(UserControllerImpl.class);
     @Autowired
     protected UserControllerImpl(UserService service) {
-        super(service);
+
     }
 }
