@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * 
- * @author 董文强
  * @date 2018年12月03日
  * @version 1.0
  */

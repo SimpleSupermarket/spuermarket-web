@@ -4,16 +4,12 @@ import org.simplesupermarket.web.app.service.AbstractSuperServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.LinkedList;
 import java.util.List;
 
 /**
- * @author 董文强
  * @version 1.0
  * @date 2018年12月03日
  */
@@ -25,31 +21,29 @@ public abstract class AbstractSuperController<T> {
 
     @PostMapping
     public Boolean add(T data) {
-        LOGGER.info(this.getClass().toString());
-        return false;
+        return service.add(data);
     }
 
     @DeleteMapping
-    public Boolean delete(Long id) {
-        return false;
+    public Boolean delete(@RequestParam("id") Long id) {
+        return service.delete(id);
     }
 
     @PatchMapping
     public Boolean update(T data) {
-        return false;
+        return service.update(data);
     }
 
     @GetMapping
     public T get(Long id) {
-        if(LOGGER.isInfoEnabled()) {
-            LOGGER.info(this.getClass().toString());
-            LOGGER.info(this.service.getClass().toString());
-        }
        return this.service.get(id);
     }
 
     @GetMapping("s")
-    public List<T> list() {
+    public List<T> list(SearchData searchData) {
+        if(LOGGER.isDebugEnabled()){
+            LOGGER.info("{}查询 {}",this.getClass().getSimpleName(),searchData);
+        }
         return new LinkedList<>();
     }
 }
