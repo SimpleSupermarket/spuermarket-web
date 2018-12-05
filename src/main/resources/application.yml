@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 8089
 spring:
     application:
         name: supermarket
@@ -8,3 +8,5 @@ spring:
         username: root
         password: root
         driver-class-name: com.mysql.jdbc.Driver
+        hikari:
+          connection-timeout: 250

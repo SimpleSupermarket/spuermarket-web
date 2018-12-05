@@ -14,10 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/user")
-public class UserControllerImpl extends AbstractSuperController<User> {
- private static final Logger LOGGER = LoggerFactory.getLogger(UserControllerImpl.class);
-    @Autowired
-    protected UserControllerImpl(UserService service) {
+public class UserController extends AbstractSuperController<User> {
+ private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
 
-    }
+
 }

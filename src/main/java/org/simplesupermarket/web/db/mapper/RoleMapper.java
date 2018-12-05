@@ -12,7 +12,7 @@ import org.apache.ibatis.type.JdbcType;
 import org.simplesupermarket.web.db.ObjectCrudMapper;
 import org.simplesupermarket.web.db.model.Role;
 
-public interface RoleMapper extends ObjectCrudMapper {
+public interface RoleMapper extends ObjectCrudMapper<Role> {
     @Delete({
         "delete from smbms_role",
         "where id = #{id,jdbcType=BIGINT}"

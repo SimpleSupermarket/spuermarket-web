@@ -12,7 +12,9 @@ import org.apache.ibatis.type.JdbcType;
 import org.simplesupermarket.web.db.ObjectCrudMapper;
 import org.simplesupermarket.web.db.model.Bill;
 
-public interface BillMapper extends ObjectCrudMapper {
+import java.util.List;
+
+public interface BillMapper extends ObjectCrudMapper<Bill> {
     @Delete({
         "delete from smbms_bill",
         "where id = #{id,jdbcType=BIGINT}"
@@ -30,6 +32,23 @@ public interface BillMapper extends ObjectCrudMapper {
         "#{createdby,jdbcType=BIGINT}, #{creationdate,jdbcType=TIMESTAMP})"
     })
     int insert(Bill record);
+
+    @Results({
+            @Result(column="id", property="id", jdbcType=JdbcType.BIGINT, id=true),
+            @Result(column="code", property="code", jdbcType=JdbcType.VARCHAR),
+            @Result(column="goods_id", property="goodsId", jdbcType=JdbcType.BIGINT),
+            @Result(column="goodsCount", property="goodscount", jdbcType=JdbcType.INTEGER),
+            @Result(column="totalPrice", property="totalprice", jdbcType=JdbcType.DECIMAL),
+            @Result(column="isPayment", property="ispayment", jdbcType=JdbcType.INTEGER),
+            @Result(column="createdBy", property="createdby", jdbcType=JdbcType.BIGINT),
+            @Result(column="creationDate", property="creationdate", jdbcType=JdbcType.TIMESTAMP)
+    })
+    @Select({
+            "select",
+            "id, code, goods_id, goodsCount, totalPrice, isPayment, createdBy, creationDate",
+            "from smbms_bill"
+    })
+    List<Bill> selectAll();
 
     @InsertProvider(type=BillSqlProvider.class, method="insertSelective")
     int insertSelective(Bill record);

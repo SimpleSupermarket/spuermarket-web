@@ -31,7 +31,7 @@ public class UserDetail extends User implements UserDetails {
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<SimpleGrantedAuthority> ro = new ArrayList<>();
         this.roles.forEach(v -> {
-            ro.add(new SimpleGrantedAuthority(v.getRolename()));
+            ro.add(new SimpleGrantedAuthority(v.getName()));
         });
         return ro;
     }
@@ -43,7 +43,7 @@ public class UserDetail extends User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return super.getUsername();
+        return super.getCode();
     }
 
     @Override

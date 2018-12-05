@@ -12,7 +12,9 @@ import org.apache.ibatis.type.JdbcType;
 import org.simplesupermarket.web.db.ObjectCrudMapper;
 import org.simplesupermarket.web.db.model.Goods;
 
-public interface GoodsMapper extends ObjectCrudMapper {
+import java.util.List;
+
+public interface GoodsMapper extends ObjectCrudMapper<Goods> {
     @Delete({
         "delete from smbms_goods",
         "where id = #{id,jdbcType=BIGINT}"
@@ -33,6 +35,26 @@ public interface GoodsMapper extends ObjectCrudMapper {
 
     @InsertProvider(type=GoodsSqlProvider.class, method="insertSelective")
     int insertSelective(Goods record);
+
+
+    @Select({
+            "select",
+            "id, code, namne, price, unit, provider_id, gstock, createdBy, creationDate",
+            "from smbms_goods"
+    })
+    @Results({
+            @Result(column="id", property="id", jdbcType=JdbcType.BIGINT, id=true),
+            @Result(column="code", property="code", jdbcType=JdbcType.VARCHAR),
+            @Result(column="namne", property="namne", jdbcType=JdbcType.VARCHAR),
+            @Result(column="price", property="price", jdbcType=JdbcType.DECIMAL),
+            @Result(column="unit", property="unit", jdbcType=JdbcType.VARCHAR),
+            @Result(column="provider_id", property="providerId", jdbcType=JdbcType.BIGINT),
+            @Result(column="gstock", property="gstock", jdbcType=JdbcType.INTEGER),
+            @Result(column="createdBy", property="createdby", jdbcType=JdbcType.BIGINT),
+            @Result(column="creationDate", property="creationdate", jdbcType=JdbcType.TIMESTAMP)
+    })
+    List<Goods> selectAll();
+
 
     @Select({
         "select",

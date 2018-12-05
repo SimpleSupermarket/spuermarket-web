@@ -12,7 +12,9 @@ import org.apache.ibatis.type.JdbcType;
 import org.simplesupermarket.web.db.ObjectCrudMapper;
 import org.simplesupermarket.web.db.model.User;
 
-public interface UserMapper extends ObjectCrudMapper {
+import java.util.List;
+
+public interface UserMapper extends ObjectCrudMapper<User> {
     @Delete({
         "delete from smbms_user",
         "where id = #{id,jdbcType=BIGINT}"
@@ -35,6 +37,28 @@ public interface UserMapper extends ObjectCrudMapper {
 
     @InsertProvider(type=UserSqlProvider.class, method="insertSelective")
     int insertSelective(User record);
+
+    @Results({
+            @Result(column="id", property="id", jdbcType=JdbcType.BIGINT, id=true),
+            @Result(column="code", property="code", jdbcType=JdbcType.VARCHAR),
+            @Result(column="name", property="name", jdbcType=JdbcType.VARCHAR),
+            @Result(column="password", property="password", jdbcType=JdbcType.CHAR),
+            @Result(column="gender", property="gender", jdbcType=JdbcType.INTEGER),
+            @Result(column="birthday", property="birthday", jdbcType=JdbcType.DATE),
+            @Result(column="phone", property="phone", jdbcType=JdbcType.VARCHAR),
+            @Result(column="address", property="address", jdbcType=JdbcType.VARCHAR),
+            @Result(column="role_id", property="roleId", jdbcType=JdbcType.BIGINT),
+            @Result(column="createdBy", property="createdby", jdbcType=JdbcType.BIGINT),
+            @Result(column="creationDate", property="creationdate", jdbcType=JdbcType.TIMESTAMP),
+            @Result(column="state", property="state", jdbcType=JdbcType.INTEGER)
+    })
+    @Select({
+            "select",
+            "id, code, name, password, gender, birthday, phone, address, role_id, createdBy, ",
+            "creationDate, state",
+            "from smbms_user"
+    })
+    List<User> selectAll();
 
     @Select({
         "select",

@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @date 2018年12月03日
@@ -23,10 +24,6 @@ public class BillServiceImpl extends AbstractSuperServiceImpl<Bill> implements B
 
 
 
-    @Override
-    public List<Bill> getList() {
-        return null;
-    }
 
 
 }

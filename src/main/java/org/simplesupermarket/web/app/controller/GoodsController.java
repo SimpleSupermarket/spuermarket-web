@@ -1,5 +1,6 @@
 package org.simplesupermarket.web.app.controller;
 import org.simplesupermarket.web.app.controller.common.AbstractSuperController;
+import org.simplesupermarket.web.db.model.Goods;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/goods")
-public class GoodsController extends AbstractSuperController {
+public class GoodsController extends AbstractSuperController<Goods> {
  private static final Logger LOGGER = LoggerFactory.getLogger(GoodsController.class);
 }

@@ -12,7 +12,9 @@ import org.apache.ibatis.type.JdbcType;
 import org.simplesupermarket.web.db.ObjectCrudMapper;
 import org.simplesupermarket.web.db.model.Provider;
 
-public interface ProviderMapper extends ObjectCrudMapper {
+import java.util.List;
+
+public interface ProviderMapper extends ObjectCrudMapper<Provider> {
     @Delete({
         "delete from smbms_provider",
         "where id = #{id,jdbcType=BIGINT}"
@@ -21,7 +23,7 @@ public interface ProviderMapper extends ObjectCrudMapper {
 
     @Insert({
         "insert into smbms_provider (id, code, ",
-        "name, desc, contact, ",
+        "name, `desc`, contact, ",
         "phone, address, ",
         "fax, createdBy, creationDate)",
         "values (#{id,jdbcType=BIGINT}, #{code,jdbcType=VARCHAR}, ",
@@ -34,9 +36,29 @@ public interface ProviderMapper extends ObjectCrudMapper {
     @InsertProvider(type=ProviderSqlProvider.class, method="insertSelective")
     int insertSelective(Provider record);
 
+
+    @Results({
+            @Result(column="id", property="id", jdbcType=JdbcType.BIGINT, id=true),
+            @Result(column="code", property="code", jdbcType=JdbcType.VARCHAR),
+            @Result(column="name", property="name", jdbcType=JdbcType.VARCHAR),
+            @Result(column="desc", property="desc", jdbcType=JdbcType.VARCHAR),
+            @Result(column="contact", property="contact", jdbcType=JdbcType.VARCHAR),
+            @Result(column="phone", property="phone", jdbcType=JdbcType.VARCHAR),
+            @Result(column="address", property="address", jdbcType=JdbcType.VARCHAR),
+            @Result(column="fax", property="fax", jdbcType=JdbcType.VARCHAR),
+            @Result(column="createdBy", property="createdby", jdbcType=JdbcType.BIGINT),
+            @Result(column="creationDate", property="creationdate", jdbcType=JdbcType.TIMESTAMP)
+    })
+    @Select({
+            "select",
+            "id, `code`, `name`, `desc`, contact, phone, address, fax, createdBy, creationDate",
+            "from smbms_provider"
+    })
+    List<Provider> selectAll();
+
     @Select({
         "select",
-        "id, code, name, desc, contact, phone, address, fax, createdBy, creationDate",
+        "id, `code`, `name`, `desc`, contact, phone, address, fax, createdBy, creationDate",
         "from smbms_provider",
         "where id = #{id,jdbcType=BIGINT}"
     })

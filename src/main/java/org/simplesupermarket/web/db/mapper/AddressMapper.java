@@ -12,7 +12,7 @@ import org.apache.ibatis.type.JdbcType;
 import org.simplesupermarket.web.db.ObjectCrudMapper;
 import org.simplesupermarket.web.db.model.Address;
 
-public interface AddressMapper extends ObjectCrudMapper {
+public interface AddressMapper {
     @Delete({
         "delete from smbms_address",
         "where id = #{id,jdbcType=BIGINT}"
