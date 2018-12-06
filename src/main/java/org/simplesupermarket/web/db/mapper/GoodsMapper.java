@@ -18,12 +18,12 @@ public interface GoodsMapper extends ObjectCrudMapper<Goods> {
 
     @Insert({
             "insert into smbms_goods (id, code, ",
-            "namne, price, unit, ",
-            "provider_id, gstock, ",
+            "name, price, unit, ",
+            "provider_id, stock, ",
             "createdBy, creationDate)",
             "values (#{id,jdbcType=BIGINT}, #{code,jdbcType=VARCHAR}, ",
-            "#{namne,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, #{unit,jdbcType=VARCHAR}, ",
-            "#{providerId,jdbcType=BIGINT}, #{gstock,jdbcType=INTEGER}, ",
+            "#{name,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, #{unit,jdbcType=VARCHAR}, ",
+            "#{providerId,jdbcType=BIGINT}, #{stock,jdbcType=INTEGER}, ",
             "#{createdby,jdbcType=BIGINT}, #{creationdate,jdbcType=TIMESTAMP})"
     })
     int insert(Goods record);
@@ -34,16 +34,16 @@ public interface GoodsMapper extends ObjectCrudMapper<Goods> {
     @Results({
             @Result(column = "id", property = "id", jdbcType = JdbcType.BIGINT, id = true),
             @Result(column = "code", property = "code", jdbcType = JdbcType.VARCHAR),
-            @Result(column = "namne", property = "namne", jdbcType = JdbcType.VARCHAR),
+            @Result(column = "name", property = "name", jdbcType = JdbcType.VARCHAR),
             @Result(column = "price", property = "price", jdbcType = JdbcType.DECIMAL),
             @Result(column = "unit", property = "unit", jdbcType = JdbcType.VARCHAR),
             @Result(column = "provider_id", property = "providerId", jdbcType = JdbcType.BIGINT),
-            @Result(column = "gstock", property = "gstock", jdbcType = JdbcType.INTEGER),
+            @Result(column = "stock", property = "stock", jdbcType = JdbcType.INTEGER),
             @Result(column = "createdBy", property = "createdby", jdbcType = JdbcType.BIGINT),
             @Result(column = "creationDate", property = "creationdate", jdbcType = JdbcType.TIMESTAMP)
     })
     @Select({"<script> select",
-            "id, code, namne, price, unit, provider_id, gstock, createdBy, creationDate",
+            "id, code, `name`, price, unit, provider_id, stock, createdBy, creationDate",
             "from smbms_goods",
             "<where> ",
             "<if test='goodsName!=null'>", "name like CONCAT('%',#{goodsName},'%') ", "</if>",
@@ -57,16 +57,16 @@ public interface GoodsMapper extends ObjectCrudMapper<Goods> {
     @Results({
             @Result(column = "id", property = "id", jdbcType = JdbcType.BIGINT, id = true),
             @Result(column = "code", property = "code", jdbcType = JdbcType.VARCHAR),
-            @Result(column = "namne", property = "namne", jdbcType = JdbcType.VARCHAR),
+            @Result(column = "name", property = "name", jdbcType = JdbcType.VARCHAR),
             @Result(column = "price", property = "price", jdbcType = JdbcType.DECIMAL),
             @Result(column = "unit", property = "unit", jdbcType = JdbcType.VARCHAR),
             @Result(column = "provider_id", property = "providerId", jdbcType = JdbcType.BIGINT),
-            @Result(column = "gstock", property = "gstock", jdbcType = JdbcType.INTEGER),
+            @Result(column = "stock", property = "stock", jdbcType = JdbcType.INTEGER),
             @Result(column = "createdBy", property = "createdby", jdbcType = JdbcType.BIGINT),
             @Result(column = "creationDate", property = "creationdate", jdbcType = JdbcType.TIMESTAMP)
     })
     @Select({"<script> select",
-            "id, code, namne, price, unit, provider_id, gstock, createdBy, creationDate",
+            "id, code, name, price, unit, provider_id, stock, createdBy, creationDate",
             "from smbms_goods",
             "where id in ",
             "<foreach item='id' index='index' collection='ids' open='(' separator=',' close=')'>",
@@ -78,18 +78,18 @@ public interface GoodsMapper extends ObjectCrudMapper<Goods> {
 
     @Select({
             "select",
-            "id, code, namne, price, unit, provider_id, gstock, createdBy, creationDate",
+            "id, code, name, price, unit, provider_id, stock, createdBy, creationDate",
             "from smbms_goods",
             "where id = #{id,jdbcType=BIGINT}"
     })
     @Results({
             @Result(column = "id", property = "id", jdbcType = JdbcType.BIGINT, id = true),
             @Result(column = "code", property = "code", jdbcType = JdbcType.VARCHAR),
-            @Result(column = "namne", property = "namne", jdbcType = JdbcType.VARCHAR),
+            @Result(column = "name", property = "name", jdbcType = JdbcType.VARCHAR),
             @Result(column = "price", property = "price", jdbcType = JdbcType.DECIMAL),
             @Result(column = "unit", property = "unit", jdbcType = JdbcType.VARCHAR),
             @Result(column = "provider_id", property = "providerId", jdbcType = JdbcType.BIGINT),
-            @Result(column = "gstock", property = "gstock", jdbcType = JdbcType.INTEGER),
+            @Result(column = "stock", property = "stock", jdbcType = JdbcType.INTEGER),
             @Result(column = "createdBy", property = "createdby", jdbcType = JdbcType.BIGINT),
             @Result(column = "creationDate", property = "creationdate", jdbcType = JdbcType.TIMESTAMP)
     })
@@ -101,11 +101,11 @@ public interface GoodsMapper extends ObjectCrudMapper<Goods> {
     @Update({
             "update smbms_goods",
             "set code = #{code,jdbcType=VARCHAR},",
-            "namne = #{namne,jdbcType=VARCHAR},",
+            "name = #{name,jdbcType=VARCHAR},",
             "price = #{price,jdbcType=DECIMAL},",
             "unit = #{unit,jdbcType=VARCHAR},",
             "provider_id = #{providerId,jdbcType=BIGINT},",
-            "gstock = #{gstock,jdbcType=INTEGER},",
+            "stock = #{stock,jdbcType=INTEGER},",
             "createdBy = #{createdby,jdbcType=BIGINT},",
             "creationDate = #{creationdate,jdbcType=TIMESTAMP}",
             "where id = #{id,jdbcType=BIGINT}"

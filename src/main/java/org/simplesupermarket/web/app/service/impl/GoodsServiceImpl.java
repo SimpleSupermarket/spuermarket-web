@@ -46,6 +46,7 @@ public class GoodsServiceImpl extends AbstractSuperServiceImpl<Goods> implements
 
         List<GoodsView> list = new Vector<>();
         List<Goods> goodsList = goodsMapper.selectAll(goodsNameStr,providerName);
+        if(goodsList==null || goodsList.isEmpty())return new ArrayList();
         Map<Long, GoodsView> map = new ConcurrentHashMap();
         Map<Long, Long> mapProvider = new ConcurrentHashMap();
         Map<Long, Long> mapUser = new ConcurrentHashMap();

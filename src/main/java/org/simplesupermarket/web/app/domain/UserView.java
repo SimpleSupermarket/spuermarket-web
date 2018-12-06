@@ -1,13 +1,17 @@
 package org.simplesupermarket.web.app.domain;
+
 import org.simplesupermarket.web.db.model.Role;
 import org.simplesupermarket.web.db.model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.Calendar;
+import java.util.Date;
+
 /**
- * 
  * @author 董文强
- * @date 2018年12月06日
  * @version 1.0
+ * @date 2018年12月06日
  */
 public class UserView {
     private Long id;
@@ -16,11 +20,11 @@ public class UserView {
 
     private String name;
 
-    private String password;
 
     private String gender;
 
     private String birthday;
+    private Integer age;
 
     private String phone;
 
@@ -58,12 +62,41 @@ public class UserView {
         this.name = name;
     }
 
-    public String getPassword() {
-        return password;
+    public Integer getAge() {
+        return age;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setAge(Date birthDay) {
+
+        Calendar cal = Calendar.getInstance();
+
+        if (cal.before(birthDay)) {
+            throw new IllegalArgumentException(
+                    "The birthDay is before Now.It's unbelievable!");
+        }
+        int yearNow = cal.get(Calendar.YEAR);
+        int monthNow = cal.get(Calendar.MONTH);
+        int dayOfMonthNow = cal.get(Calendar.DAY_OF_MONTH);
+        cal.setTime(birthDay);
+
+        int yearBirth = cal.get(Calendar.YEAR);
+        int monthBirth = cal.get(Calendar.MONTH);
+        int dayOfMonthBirth = cal.get(Calendar.DAY_OF_MONTH);
+
+        int age = yearNow - yearBirth;
+
+        if (monthNow <= monthBirth) {
+            if (monthNow == monthBirth) {
+                if (dayOfMonthNow < dayOfMonthBirth) age--;
+            } else {
+                age--;
+            }
+        }
+        this.age = age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
     }
 
     public String getGender() {

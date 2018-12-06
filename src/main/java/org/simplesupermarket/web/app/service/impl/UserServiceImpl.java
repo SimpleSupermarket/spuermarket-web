@@ -42,11 +42,13 @@ public class UserServiceImpl extends AbstractSuperServiceImpl<User> implements O
                 .filter(v -> v.getPassword().equals(password))
                 .filter(v -> v.getState().equals(0))
                 .findFirst().orElse(null);
+        if(user == null)return null;
         UserDetail userDetail = new UserDetail();
         BeanUtils.copyProperties(user, userDetail);
         List<Role> roles = new ArrayList<>(1);
         roles.add(roleMapper.selectByPrimaryKey(user.getRoleId()));
         userDetail.setRoles(roles);
+        userDetail.setPassword("nonono~~~~~~~~");
         return userDetail;
     }
 
@@ -62,6 +64,7 @@ public class UserServiceImpl extends AbstractSuperServiceImpl<User> implements O
     public List getList(String name) {
         List<UserView> list = new Vector<>();
         List<User> userList = userMapper.selectAll(name, null);
+        if(userList==null || userList.isEmpty())return new ArrayList();
         Map<Long, UserView> map = new ConcurrentHashMap();
         Map<Long, Long> mapUser = new ConcurrentHashMap();
         Map<Long, Long> mapRole = new ConcurrentHashMap();
@@ -71,7 +74,7 @@ public class UserServiceImpl extends AbstractSuperServiceImpl<User> implements O
             userView.setCreationdate(super.format.format(user.getCreationdate()));
             userView.setGender(user.getGender() == 1 ? "女" : "男");
             userView.setState(user.getState() == 0 ? "正常" : "停用");
-            userView.setPassword("不可查看密码");
+            userView.setAge(user.getBirthday());
             mapUser.put(user.getCreatedby(), user.getId());
             mapRole.put(user.getRoleId(), user.getId());
             map.put(user.getId(), userView);

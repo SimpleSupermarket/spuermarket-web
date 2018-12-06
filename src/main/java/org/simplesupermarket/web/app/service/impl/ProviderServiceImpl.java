@@ -41,6 +41,7 @@ public class ProviderServiceImpl extends AbstractSuperServiceImpl<Provider> impl
 
         List<ProviderView> list = new Vector<>();
         List<Provider> providerList = providerMapper.selectAll(providerName);
+        if(providerList==null || providerList.isEmpty())return new ArrayList();
         Map<Long, ProviderView> map = new ConcurrentHashMap();
         Map<Long, Long> mapUser = new ConcurrentHashMap();
         providerList.forEach(provider -> {

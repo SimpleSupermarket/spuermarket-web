@@ -64,6 +64,7 @@ public class BillServiceImpl extends AbstractSuperServiceImpl<Bill> implements B
     public List getList(String goodsNameStr, Integer isPayment, String providerName) {
         List<BillView> list = new Vector<>();
         List<Bill> billList = billMapper.selectAll(isPayment, goodsNameStr, providerName);
+        if(billList==null || billList.isEmpty())return new ArrayList();
         Map<Long, BillView> map = new ConcurrentHashMap();
         Map<Long, Long> mapGoods = new ConcurrentHashMap();
         Map<Long, Long> mapUser = new ConcurrentHashMap();

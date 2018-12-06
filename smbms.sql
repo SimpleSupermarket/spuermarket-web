@@ -2,7 +2,8 @@
 SQLyog Community v10.0 
 MySQL - 5.7.17-log : Database - smbms
 *********************************************************************
-*/
+*/
+
 
 /*!40101 SET NAMES utf8 */;
 
@@ -69,11 +70,11 @@ DROP TABLE IF EXISTS `smbms_goods`;
 CREATE TABLE `smbms_goods` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '商品ID',
   `code` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '商品编码',
-  `namne` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '商品名称',
+  `name` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '商品名称',
   `price` decimal(20,2) DEFAULT NULL COMMENT '价格',
   `unit` varchar(10) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '单位',
   `provider_id` bigint(20) DEFAULT NULL COMMENT '供应商ID',
-  `gstock` int(11) DEFAULT NULL COMMENT '库存',
+  `stock` int(11) DEFAULT NULL COMMENT '库存',
   `createdBy` bigint(20) DEFAULT NULL COMMENT '创建者(userid)',
   `creationDate` datetime DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`),

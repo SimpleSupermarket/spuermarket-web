@@ -1,8 +1,7 @@
 package org.simplesupermarket.web.app.domain;
 import org.simplesupermarket.web.db.model.Provider;
 import org.simplesupermarket.web.db.model.User;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 /**
  *
  * @date 2018年12月06日
@@ -13,7 +12,7 @@ public class GoodsView {
 
     private String code;
 
-    private String namne;
+    private String name;
 
     private String price;
 
@@ -21,7 +20,7 @@ public class GoodsView {
 
     private Provider provider;
 
-    private Integer gstock;
+    private Integer stock;
 
     private User createdby;
 
@@ -43,12 +42,12 @@ public class GoodsView {
         this.code = code;
     }
 
-    public String getNamne() {
-        return namne;
+    public String getName() {
+        return name;
     }
 
-    public void setNamne(String namne) {
-        this.namne = namne;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getPrice() {
@@ -75,12 +74,12 @@ public class GoodsView {
         this.provider = provider;
     }
 
-    public Integer getGstock() {
-        return gstock;
+    public Integer getStock() {
+        return stock;
     }
 
-    public void setGstock(Integer gstock) {
-        this.gstock = gstock;
+    public void setStock(Integer stock) {
+        this.stock = stock;
     }
 
     public User getCreatedby() {

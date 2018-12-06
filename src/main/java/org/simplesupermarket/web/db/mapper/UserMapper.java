@@ -61,6 +61,8 @@ public interface UserMapper extends ObjectCrudMapper<User> {
             "</script>"
     })
     List<User> selectAll(@Param("name") String name,@Param("code") String code);
+
+
     @Results({
             @Result(column="id", property="id", jdbcType=JdbcType.BIGINT, id=true),
             @Result(column="code", property="code", jdbcType=JdbcType.VARCHAR),
@@ -69,12 +71,12 @@ public interface UserMapper extends ObjectCrudMapper<User> {
             @Result(column="birthday", property="birthday", jdbcType=JdbcType.DATE),
             @Result(column="phone", property="phone", jdbcType=JdbcType.VARCHAR),
             @Result(column="address", property="address", jdbcType=JdbcType.VARCHAR),
+            @Result(column="createdBy", property="createdby", jdbcType=JdbcType.BIGINT),
             @Result(column="creationDate", property="creationdate", jdbcType=JdbcType.TIMESTAMP)
     })
     @Select({
             "<script> select",
-            "id, `code`, `name`,  gender, birthday, phone, address,  ",
-            "creationDate",
+            "id, `code`, `name`,  gender, birthday, phone, address, createdBy,creationDate",
             "from smbms_user",
             "where id in ",
             "<foreach item='id' index='index' collection='ids' open='(' separator=',' close=')'>",
@@ -83,6 +85,7 @@ public interface UserMapper extends ObjectCrudMapper<User> {
             "</script>"
     })
     List<User> selectByIds(@Param("ids") List<Long> ids);
+
     @Select({
         "select",
         "id, code, name, password, gender, birthday, phone, address, role_id, createdBy, ",
