@@ -9,4 +9,5 @@ public interface ObjectCrudMapper<T> {
     T selectByPrimaryKey(Long id);
     int updateByPrimaryKey(T record);
     List<T> selectAll();
+    List<T> selectByIds(List<Long> ids);
 }

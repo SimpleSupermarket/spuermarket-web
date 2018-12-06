@@ -42,7 +42,6 @@ public abstract class AbstractSuperController<T> {
     public SearchData list(SearchData searchData) {
         if(LOGGER.isInfoEnabled()){
             LOGGER.info("{}查询 {}",this.getClass().getSimpleName(),searchData);
-
         }
         Integer page = searchData.getCurrPage();
         Integer pageSize = searchData.getPageSize();

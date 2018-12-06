@@ -1,19 +1,14 @@
 package org.simplesupermarket.web.db.mapper;
 
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.InsertProvider;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
-import org.apache.ibatis.annotations.UpdateProvider;
+import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
 import org.simplesupermarket.web.db.ObjectCrudMapper;
 import org.simplesupermarket.web.db.model.Provider;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public interface ProviderMapper extends ObjectCrudMapper<Provider> {
     @Delete({
         "delete from smbms_provider",
@@ -50,12 +45,38 @@ public interface ProviderMapper extends ObjectCrudMapper<Provider> {
             @Result(column="creationDate", property="creationdate", jdbcType=JdbcType.TIMESTAMP)
     })
     @Select({
-            "select",
+            "<script> select",
             "id, `code`, `name`, `desc`, contact, phone, address, fax, createdBy, creationDate",
-            "from smbms_provider"
+            "from smbms_provider",
+            "<if test='providerName!=null'>",
+                "where name like CONCAT('%',#{providerName},'%') ",
+            "</if>",
+            "</script>"
     })
-    List<Provider> selectAll();
-
+    List<Provider> selectAll(@Param("providerName") String providerName);
+    @Results({
+            @Result(column="id", property="id", jdbcType=JdbcType.BIGINT, id=true),
+            @Result(column="code", property="code", jdbcType=JdbcType.VARCHAR),
+            @Result(column="name", property="name", jdbcType=JdbcType.VARCHAR),
+            @Result(column="desc", property="desc", jdbcType=JdbcType.VARCHAR),
+            @Result(column="contact", property="contact", jdbcType=JdbcType.VARCHAR),
+            @Result(column="phone", property="phone", jdbcType=JdbcType.VARCHAR),
+            @Result(column="address", property="address", jdbcType=JdbcType.VARCHAR),
+            @Result(column="fax", property="fax", jdbcType=JdbcType.VARCHAR),
+            @Result(column="createdBy", property="createdby", jdbcType=JdbcType.BIGINT),
+            @Result(column="creationDate", property="creationdate", jdbcType=JdbcType.TIMESTAMP)
+    })
+    @Select({
+            "<script> select",
+            "id, `code`, `name`, `desc`, contact, phone, address, fax, createdBy, creationDate",
+            "from smbms_provider",
+            "where id in ",
+            "<foreach item='id' index='index' collection='ids' open='(' separator=',' close=')'>",
+            "#{id}",
+            "</foreach>",
+            "</script>"
+    })
+    List<Provider> selectByIds(@Param("ids") List<Long> ids);
     @Select({
         "select",
         "id, `code`, `name`, `desc`, contact, phone, address, fax, createdBy, creationDate",

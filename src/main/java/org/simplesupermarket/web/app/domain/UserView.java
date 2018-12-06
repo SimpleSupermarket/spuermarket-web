@@ -1,33 +1,38 @@
 package org.simplesupermarket.web.app.domain;
-
+import org.simplesupermarket.web.db.model.Role;
 import org.simplesupermarket.web.db.model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 /**
- *
- * @Time 2018/12/5 23:33
+ * 
+ * @author 董文强
+ * @date 2018年12月06日
+ * @version 1.0
  */
-public class ProviderView {
+public class UserView {
     private Long id;
 
     private String code;
 
     private String name;
 
-    private String desc;
+    private String password;
 
-    private String contact;
+    private String gender;
+
+    private String birthday;
 
     private String phone;
 
     private String address;
 
-    private String fax;
+    private Role roleId;
 
     private User createdby;
 
     private String creationdate;
+
+    private String state;
 
     public Long getId() {
         return id;
@@ -53,20 +58,28 @@ public class ProviderView {
         this.name = name;
     }
 
-    public String getDesc() {
-        return desc;
+    public String getPassword() {
+        return password;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public String getContact() {
-        return contact;
+    public String getGender() {
+        return gender;
     }
 
-    public void setContact(String contact) {
-        this.contact = contact;
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
     }
 
     public String getPhone() {
@@ -85,12 +98,12 @@ public class ProviderView {
         this.address = address;
     }
 
-    public String getFax() {
-        return fax;
+    public Role getRoleId() {
+        return roleId;
     }
 
-    public void setFax(String fax) {
-        this.fax = fax;
+    public void setRoleId(Role roleId) {
+        this.roleId = roleId;
     }
 
     public User getCreatedby() {
@@ -107,5 +120,13 @@ public class ProviderView {
 
     public void setCreationdate(String creationdate) {
         this.creationdate = creationdate;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
     }
 }

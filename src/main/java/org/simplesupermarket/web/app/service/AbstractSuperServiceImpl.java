@@ -42,7 +42,7 @@ public abstract class AbstractSuperServiceImpl<T> {
         return mapper.selectByPrimaryKey(id);
     }
 
-    public  List getList(Map sd){
+    public  List getList(Map<String,String> sd){
        return this.mapper.selectAll();
     }
 }
