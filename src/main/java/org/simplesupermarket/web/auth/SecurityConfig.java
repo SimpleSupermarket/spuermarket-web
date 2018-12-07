@@ -30,8 +30,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         //设置登录拦截验证跳转
         http.authorizeRequests()
                 .antMatchers("/login/*", "/login").permitAll()
-                .anyRequest().authenticated()
-                .and().formLogin().loginProcessingUrl("/login").loginPage("/login/NoLogin")
+                .anyRequest().authenticated().and().apply(new LoginConfigurer<>()).loginPage("/NONO")
+                .loginProcessingUrl("/login")
                 .failureForwardUrl("/login/loginNO").successForwardUrl("/login/loginOK")
                 .passwordParameter("password").usernameParameter("username")
                 .permitAll()//.defaultSuccessUrl().defaultSuccessUrl("/login/loginOK").permitAll()
