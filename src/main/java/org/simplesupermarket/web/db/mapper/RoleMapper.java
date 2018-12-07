@@ -44,6 +44,25 @@ public interface RoleMapper extends ObjectCrudMapper<Role> {
     })
     Role selectByPrimaryKey(Long id);
 
+    @Results({
+            @Result(column="id", property="id", jdbcType=JdbcType.BIGINT, id=true),
+            @Result(column="code", property="code", jdbcType=JdbcType.VARCHAR),
+            @Result(column="name", property="name", jdbcType=JdbcType.VARCHAR),
+            @Result(column="createdBy", property="createdby", jdbcType=JdbcType.BIGINT),
+            @Result(column="creationDate", property="creationdate", jdbcType=JdbcType.TIMESTAMP)
+    })
+    @Select({
+            "<script> select",
+            "id, code, name, createdBy, creationDate",
+            "from smbms_role",
+            "where id in ",
+            "<foreach item='id' index='index' collection='ids' open='(' separator=',' close=')'>",
+            "#{id}",
+            "</foreach>",
+            "</script>"
+    })
+    List<Role> selectByIds(@Param("ids") List<Long> id);
+
     @UpdateProvider(type=RoleSqlProvider.class, method="updateByPrimaryKeySelective")
     int updateByPrimaryKeySelective(Role record);
 

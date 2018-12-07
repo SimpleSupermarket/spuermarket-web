@@ -8,7 +8,7 @@ public class Goods {
 
     private String code;
 
-    private String namne;
+    private String name;
 
     private BigDecimal price;
 
@@ -16,7 +16,7 @@ public class Goods {
 
     private Long providerId;
 
-    private Integer gstock;
+    private Integer stock;
 
     private Long createdby;
 
@@ -38,12 +38,12 @@ public class Goods {
         this.code = code == null ? null : code.trim();
     }
 
-    public String getNamne() {
-        return namne;
+    public String getName() {
+        return name;
     }
 
-    public void setNamne(String namne) {
-        this.namne = namne == null ? null : namne.trim();
+    public void setName(String name) {
+        this.name = name == null ? null : name.trim();
     }
 
     public BigDecimal getPrice() {
@@ -70,12 +70,12 @@ public class Goods {
         this.providerId = providerId;
     }
 
-    public Integer getGstock() {
-        return gstock;
+    public Integer getStock() {
+        return stock;
     }
 
-    public void setGstock(Integer gstock) {
-        this.gstock = gstock;
+    public void setStock(Integer stock) {
+        this.stock = stock;
     }
 
     public Long getCreatedby() {

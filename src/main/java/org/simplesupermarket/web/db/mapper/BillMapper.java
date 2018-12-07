@@ -99,7 +99,7 @@ public interface BillMapper extends ObjectCrudMapper<Bill> {
             "</foreach>",
             "</script>"
     })
-    Bill selectByIds(@Param("ids") List<Long> ids);
+    List<Bill> selectByIds(@Param("ids") List<Long> ids);
 
 
     @UpdateProvider(type = BillSqlProvider.class, method = "updateByPrimaryKeySelective")

@@ -34,8 +34,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and().formLogin().loginProcessingUrl("/login").loginPage("/login/NoLogin")
                 .failureForwardUrl("/login/loginNO").successForwardUrl("/login/loginOK")
                 .passwordParameter("password").usernameParameter("username")
-                .permitAll()
-                .defaultSuccessUrl("/").permitAll()
+                .permitAll()//.defaultSuccessUrl().defaultSuccessUrl("/login/loginOK").permitAll()
                 .and().logout().logoutSuccessUrl("/").permitAll().and();
         //关闭打开的csrf保护
         http.csrf().disable();

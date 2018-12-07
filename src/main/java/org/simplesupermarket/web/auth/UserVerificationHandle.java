@@ -35,7 +35,6 @@ public class UserVerificationHandle implements AuthenticationProvider {
      * */
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-
         String username = authentication.getName();
         String password = (String) authentication.getCredentials();
         if (password == null || password.isEmpty()) {
@@ -43,19 +42,18 @@ public class UserVerificationHandle implements AuthenticationProvider {
         }
         UserDetails userDetials;
         try {
-            //TODO 查询管理者用户
             userDetials = ownService.getManageUserLogin(username,password);
         } catch (UsernameNotFoundException e) {
             return null;
         }
         //TODO 获取用户权限列表
         // Collection<? extends GrantedAuthority> authorities = userDetials.getAuthorities();
-        Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority("管理员"));
+      //  Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
+       // authorities.add(new SimpleGrantedAuthority("管理员"));
 
         //判断用户密码是否正确
         if (userDetials != null  ) {
-            return new UsernamePasswordAuthenticationToken(userDetials, password, authorities);
+            return new UsernamePasswordAuthenticationToken(userDetials, password, userDetials.getAuthorities());
         } else {
             /*密码不正确*/
             return null;//new UsernamePasswordAuthenticationToken(userDetials,password,null);
@@ -72,7 +70,7 @@ public class UserVerificationHandle implements AuthenticationProvider {
      * 没有登录
      * @return 没有登录的内容
      */
-    @GetMapping("/NoLogin")
+    @RequestMapping("/NoLogin")
     public boolean noLogin(HttpServletResponse response) {
         response.setStatus(401);
         //TODO 没有登录
@@ -95,7 +93,7 @@ public class UserVerificationHandle implements AuthenticationProvider {
      *
      * @return 成功时的返回值 true
      */
-    @GetMapping("/loginOK")
+    @RequestMapping("/loginOK")
     public Boolean loginOK() {
         return true;
     }

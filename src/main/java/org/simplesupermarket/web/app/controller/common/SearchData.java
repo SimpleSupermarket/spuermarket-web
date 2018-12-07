@@ -3,6 +3,7 @@ package org.simplesupermarket.web.app.controller.common;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -14,9 +15,20 @@ public class SearchData {
     private Integer sumPage;  //总页数
     private Integer currPage; //当前页
     private Long count;    //总记录数
-    private Map search; //查询条件
+    private String search; //查询条件
     private List data; //返回数据
 
+    @Override
+    public String toString() {
+        return "SearchData{" +
+                "pageSize=" + pageSize +
+                ", sumPage=" + sumPage +
+                ", currPage=" + currPage +
+                ", count=" + count +
+                ", search=" + search +
+                ", data=" + data +
+                '}';
+    }
 
     public Integer getPageSize() {
         return pageSize;
@@ -50,11 +62,11 @@ public class SearchData {
         this.count = count;
     }
 
-    public Map getSearch() {
+    public String getSearch() {
         return search;
     }
 
-    public void setSearch(Map search) {
+    public void setSearch(String search) {
         this.search = search;
     }
 

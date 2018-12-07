@@ -54,6 +54,8 @@ public interface ProviderMapper extends ObjectCrudMapper<Provider> {
             "</script>"
     })
     List<Provider> selectAll(@Param("providerName") String providerName);
+
+
     @Results({
             @Result(column="id", property="id", jdbcType=JdbcType.BIGINT, id=true),
             @Result(column="code", property="code", jdbcType=JdbcType.VARCHAR),
@@ -68,7 +70,7 @@ public interface ProviderMapper extends ObjectCrudMapper<Provider> {
     })
     @Select({
             "<script> select",
-            "id, `code`, `name`, `desc`, contact, phone, address, fax, createdBy, creationDate",
+            "id, code, `name`, `desc`, contact, phone, address, fax, createdBy, creationDate",
             "from smbms_provider",
             "where id in ",
             "<foreach item='id' index='index' collection='ids' open='(' separator=',' close=')'>",
@@ -77,6 +79,7 @@ public interface ProviderMapper extends ObjectCrudMapper<Provider> {
             "</script>"
     })
     List<Provider> selectByIds(@Param("ids") List<Long> ids);
+
     @Select({
         "select",
         "id, `code`, `name`, `desc`, contact, phone, address, fax, createdBy, creationDate",

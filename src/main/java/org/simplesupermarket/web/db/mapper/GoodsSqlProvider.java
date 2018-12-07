@@ -17,8 +17,8 @@ public class GoodsSqlProvider {
             sql.VALUES("code", "#{code,jdbcType=VARCHAR}");
         }
         
-        if (record.getNamne() != null) {
-            sql.VALUES("namne", "#{namne,jdbcType=VARCHAR}");
+        if (record.getName() != null) {
+            sql.VALUES("name", "#{name,jdbcType=VARCHAR}");
         }
         
         if (record.getPrice() != null) {
@@ -33,7 +33,7 @@ public class GoodsSqlProvider {
             sql.VALUES("provider_id", "#{providerId,jdbcType=BIGINT}");
         }
         
-        if (record.getGstock() != null) {
+        if (record.getStock() != null) {
             sql.VALUES("gstock", "#{gstock,jdbcType=INTEGER}");
         }
         
@@ -56,8 +56,8 @@ public class GoodsSqlProvider {
             sql.SET("code = #{code,jdbcType=VARCHAR}");
         }
         
-        if (record.getNamne() != null) {
-            sql.SET("namne = #{namne,jdbcType=VARCHAR}");
+        if (record.getName() != null) {
+            sql.SET("name = #{name,jdbcType=VARCHAR}");
         }
         
         if (record.getPrice() != null) {
@@ -72,7 +72,7 @@ public class GoodsSqlProvider {
             sql.SET("provider_id = #{providerId,jdbcType=BIGINT}");
         }
         
-        if (record.getGstock() != null) {
+        if (record.getStock() != null) {
             sql.SET("gstock = #{gstock,jdbcType=INTEGER}");
         }
         
