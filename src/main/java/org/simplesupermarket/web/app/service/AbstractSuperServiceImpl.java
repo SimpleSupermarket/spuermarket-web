@@ -26,6 +26,7 @@ public abstract class AbstractSuperServiceImpl<T> {
 
 
     public Boolean add(T data) {
+
         return mapper.insert(data) == 1;
     }
 
