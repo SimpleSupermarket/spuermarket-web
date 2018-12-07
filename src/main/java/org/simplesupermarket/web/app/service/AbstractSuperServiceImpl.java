@@ -89,12 +89,7 @@ public abstract class AbstractSuperServiceImpl<T> {
            throw new BusinessException("99999",e.getMessage());
         }
         Class viewClass = getDbDataMethod.getAnnotation(ViewClass.class).value();
-        //TODO model -> view todo
-        //viewClass.newInstance();
         List viewList = new ArrayList(dbData.size());
-        dbData.forEach(v->{
-            //id = v.getId();
-        });
         //TODO view.model = model
         Map<Field,Map<Integer,Integer>> fieldMapMap = new HashMap();
         Field[] fields = viewClass.getDeclaredFields();
@@ -103,7 +98,12 @@ public abstract class AbstractSuperServiceImpl<T> {
                 fieldMapMap.put(field,new ConcurrentHashMap<>());
             }
         }
-
+        //TODO model -> view todo
+        dbData.forEach(v->{
+            //viewClass.newInstance();
+            //id = v.getId();
+            //
+        });
 
         return null;
     }
