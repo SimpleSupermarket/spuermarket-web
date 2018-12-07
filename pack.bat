@@ -9,7 +9,7 @@ setlocal enabledelayedexpansion
 
 
 
-set APP_NAME=oa-base
+set APP_NAME=supermarket
 set TAR_FILE_NAME=%APP_NAME%.jar
 set TMP_PATH=temp\%APP_NAME%\
 
@@ -23,7 +23,7 @@ rd /s/q temp
 mkdir temp
 xcopy /y config %TMP_PATH%\config\
 
-xcopy /y target\oa-base-1.0.*-SNAPSHOT.jar %TMP_PATH%
+xcopy /y target\supermarket-1.*-SNAPSHOT.jar %TMP_PATH%
 xcopy /y sh %TMP_PATH%
 
 jar -cvfM %TAR_FILE_NAME% -C temp .

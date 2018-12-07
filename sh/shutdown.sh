@@ -1,1 +1,1 @@
-curl 127.0.0.1:8081/shutdown
+curl 127.0.0.1:8089/shutdown
