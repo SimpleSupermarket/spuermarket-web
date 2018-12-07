@@ -34,8 +34,8 @@ public class BillServiceImpl extends AbstractSuperServiceImpl<Bill> implements B
     /**
      * 参数验证
      */
-    @Override
-    public List getList(Map<String, String> sd) {
+   // @Override
+    public List getList1(Map<String, String> sd) {
         String goodsNameStr = sd.get("goodsName");
         String isPaymentStr = sd.get("isPayment");
         String providerStr = sd.get("provider");
@@ -71,8 +71,8 @@ public class BillServiceImpl extends AbstractSuperServiceImpl<Bill> implements B
         billList.forEach(bill -> {
             BillView billView = new BillView();
             BeanUtils.copyProperties(bill, billView);
-            billView.setIspayment(PAYMENT.getPayment(bill.getIspayment()));
-            billView.setTotalprice(bill.getTotalprice().setScale(2).toString());
+            billView.setIspayment(PAYMENT.getPayment(bill.getIsPayment()));
+            billView.setTotalprice(bill.getTotalPrice().setScale(2).toString());
             billView.setCreationdate(super.format.format(bill.getCreationdate()));
             mapGoods.put(bill.getGoodsId(), bill.getId());
             mapUser.put(bill.getCreatedby(), bill.getId());

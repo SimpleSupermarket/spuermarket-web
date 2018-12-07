@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.json.JsonParser;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,12 +25,12 @@ public abstract class AbstractSuperController<T> {
     protected AbstractSuperServiceImpl<T> service;
 
     @PostMapping
-    public Boolean add(@RequestBody T data,UsernamePasswordAuthenticationToken user) {
-        if(LOGGER.isInfoEnabled()){
-            LOGGER.info("添加{}",data);
+    public Boolean add(@RequestBody T data, UsernamePasswordAuthenticationToken user) {
+        if (LOGGER.isInfoEnabled()) {
+            LOGGER.info("添加{}", data);
         }
         UserDetail userDetail = (UserDetail) user.getPrincipal();
-        return service.add(data,userDetail);
+        return service.add(data, userDetail);
     }
 
     @DeleteMapping
@@ -65,7 +66,7 @@ public abstract class AbstractSuperController<T> {
         }
         Map map;
         try {
-            map = jsonParser.parseMap(searchData.getSearch());
+            map = searchData.getSearch() == null ? null : jsonParser.parseMap(searchData.getSearch());
         } catch (Exception e) {
             throw new IllegalArgumentException("查询条件格式有误");
         }

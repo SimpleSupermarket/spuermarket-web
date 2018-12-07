@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.TimeZone;
 import java.util.UUID;
 
 /**
@@ -22,8 +23,11 @@ public class StandardCodeBuilder implements CodeBuilder {
     private UserDetail user = null;
     private String name = null;
     private int length = 20;
-    private static final SimpleDateFormat format = new SimpleDateFormat("YYHHmmssSSSS");
+    private static final SimpleDateFormat format =new SimpleDateFormat("YYMDHmssSSS");
+    static {
+        format.setTimeZone(TimeZone.getTimeZone("Asia/Shanghai"));  // 设置北京时区
 
+    }
     @Override
     public CodeBuilder setName(String name) {
         this.name = name;

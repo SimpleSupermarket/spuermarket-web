@@ -28,7 +28,7 @@ public class StandardDataHandle implements DataHandle {
         if (code.get(data) != null && !((String) code.get(data)).isEmpty()) {
             return data;
         }
-        String name = null;
+        String name;
         try {
             Field nameField = dataClass.getDeclaredField("name");
             nameField.setAccessible(true);
@@ -65,7 +65,7 @@ public class StandardDataHandle implements DataHandle {
             this.setThisUserId(data, "createdby");
             this.setNowDate(data, "creationdate");
         } catch (NoSuchFieldException | IllegalAccessException e) {
-            if(LOGGER.isErrorEnabled()){
+            if(LOGGER.isDebugEnabled()){
                 e.printStackTrace();
             }
             throw new IllegalArgumentException("参数异常");

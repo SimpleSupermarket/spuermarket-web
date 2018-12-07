@@ -13,6 +13,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Map;
+import java.util.TimeZone;
 
 /**
  * @version 1.0
@@ -24,9 +25,12 @@ public abstract class AbstractSuperServiceImpl<T> {
 
     protected final DateFormat format = new SimpleDateFormat("yyyy年MM月dd日HH时");
 
+    public AbstractSuperServiceImpl() {
+        format.setTimeZone(TimeZone.getTimeZone("Asia/Shanghai"));  // 设置北京时区
+    }
+
     @Autowired
     protected ObjectCrudMapper<T> mapper;
-
 
 
     public Boolean add(T data, UserDetail userDetail) {
@@ -36,10 +40,9 @@ public abstract class AbstractSuperServiceImpl<T> {
     }
 
 
-
     /**
      * 可以在子类中自己定义数据的预处理类
-     * */
+     */
     protected DataHandle getDataHandle() {
         return new StandardDataHandle();
     }
@@ -60,7 +63,9 @@ public abstract class AbstractSuperServiceImpl<T> {
     }
 
     public List getList(Map<String, String> sd) {
+
         return this.mapper.selectAll();
+
     }
 
 

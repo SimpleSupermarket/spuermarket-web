@@ -21,15 +21,15 @@ public class BillSqlProvider {
             sql.VALUES("goods_id", "#{goodsId,jdbcType=BIGINT}");
         }
         
-        if (record.getGoodscount() != null) {
+        if (record.getGoodsCount() != null) {
             sql.VALUES("goodsCount", "#{goodscount,jdbcType=INTEGER}");
         }
         
-        if (record.getTotalprice() != null) {
+        if (record.getTotalPrice() != null) {
             sql.VALUES("totalPrice", "#{totalprice,jdbcType=DECIMAL}");
         }
         
-        if (record.getIspayment() != null) {
+        if (record.getIsPayment() != null) {
             sql.VALUES("isPayment", "#{ispayment,jdbcType=INTEGER}");
         }
         
@@ -56,15 +56,15 @@ public class BillSqlProvider {
             sql.SET("goods_id = #{goodsId,jdbcType=BIGINT}");
         }
         
-        if (record.getGoodscount() != null) {
+        if (record.getGoodsCount() != null) {
             sql.SET("goodsCount = #{goodscount,jdbcType=INTEGER}");
         }
         
-        if (record.getTotalprice() != null) {
+        if (record.getTotalPrice() != null) {
             sql.SET("totalPrice = #{totalprice,jdbcType=DECIMAL}");
         }
         
-        if (record.getIspayment() != null) {
+        if (record.getIsPayment() != null) {
             sql.SET("isPayment = #{ispayment,jdbcType=INTEGER}");
         }
         

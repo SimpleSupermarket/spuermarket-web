@@ -10,11 +10,11 @@ public class Bill {
 
     private Long goodsId;
 
-    private Integer goodscount;
+    private Integer goodsCount;
 
-    private BigDecimal totalprice;
+    private BigDecimal totalPrice;
 
-    private Integer ispayment;
+    private Integer isPayment;
 
     private Long createdby;
 
@@ -44,28 +44,28 @@ public class Bill {
         this.goodsId = goodsId;
     }
 
-    public Integer getGoodscount() {
-        return goodscount;
+    public Integer getGoodsCount() {
+        return goodsCount;
     }
 
-    public void setGoodscount(Integer goodscount) {
-        this.goodscount = goodscount;
+    public void setGoodsCount(Integer goodsCount) {
+        this.goodsCount = goodsCount;
     }
 
-    public BigDecimal getTotalprice() {
-        return totalprice;
+    public BigDecimal getTotalPrice() {
+        return totalPrice;
     }
 
-    public void setTotalprice(BigDecimal totalprice) {
-        this.totalprice = totalprice;
+    public void setTotalPrice(BigDecimal totalPrice) {
+        this.totalPrice = totalPrice;
     }
 
-    public Integer getIspayment() {
-        return ispayment;
+    public Integer getIsPayment() {
+        return isPayment;
     }
 
-    public void setIspayment(Integer ispayment) {
-        this.ispayment = ispayment;
+    public void setIsPayment(Integer isPayment) {
+        this.isPayment = isPayment;
     }
 
     public Long getCreatedby() {

@@ -22,8 +22,8 @@ public interface BillMapper extends ObjectCrudMapper<Bill> {
             "totalPrice, isPayment, ",
             "createdBy, creationDate)",
             "values (#{id,jdbcType=BIGINT}, #{code,jdbcType=VARCHAR}, ",
-            "#{goodsId,jdbcType=BIGINT}, #{goodscount,jdbcType=INTEGER}, ",
-            "#{totalprice,jdbcType=DECIMAL}, #{ispayment,jdbcType=INTEGER}, ",
+            "#{goodsId,jdbcType=BIGINT}, #{goodsCount,jdbcType=INTEGER}, ",
+            "#{totalPrice,jdbcType=DECIMAL}, #{isPayment,jdbcType=INTEGER}, ",
             "#{createdby,jdbcType=BIGINT}, #{creationdate,jdbcType=TIMESTAMP})"
     })
     int insert(Bill record);
@@ -32,9 +32,9 @@ public interface BillMapper extends ObjectCrudMapper<Bill> {
             @Result(column = "id", property = "id", jdbcType = JdbcType.BIGINT, id = true),
             @Result(column = "code", property = "code", jdbcType = JdbcType.VARCHAR),
             @Result(column = "goods_id", property = "goodsId", jdbcType = JdbcType.BIGINT),
-            @Result(column = "goodsCount", property = "goodscount", jdbcType = JdbcType.INTEGER),
-            @Result(column = "totalPrice", property = "totalprice", jdbcType = JdbcType.DECIMAL),
-            @Result(column = "isPayment", property = "ispayment", jdbcType = JdbcType.INTEGER),
+            @Result(column = "goodsCount", property = "goodsCount", jdbcType = JdbcType.INTEGER),
+            @Result(column = "totalPrice", property = "totalPrice", jdbcType = JdbcType.DECIMAL),
+            @Result(column = "isPayment", property = "isPayment", jdbcType = JdbcType.INTEGER),
             @Result(column = "createdBy", property = "createdby", jdbcType = JdbcType.BIGINT),
             @Result(column = "creationDate", property = "creationdate", jdbcType = JdbcType.TIMESTAMP)
     })
@@ -71,9 +71,9 @@ public interface BillMapper extends ObjectCrudMapper<Bill> {
             @Result(column = "id", property = "id", jdbcType = JdbcType.BIGINT, id = true),
             @Result(column = "code", property = "code", jdbcType = JdbcType.VARCHAR),
             @Result(column = "goods_id", property = "goodsId", jdbcType = JdbcType.BIGINT),
-            @Result(column = "goodsCount", property = "goodscount", jdbcType = JdbcType.INTEGER),
-            @Result(column = "totalPrice", property = "totalprice", jdbcType = JdbcType.DECIMAL),
-            @Result(column = "isPayment", property = "ispayment", jdbcType = JdbcType.INTEGER),
+            @Result(column = "goodsCount", property = "goodsCount", jdbcType = JdbcType.INTEGER),
+            @Result(column = "totalPrice", property = "totalPrice", jdbcType = JdbcType.DECIMAL),
+            @Result(column = "isPayment", property = "isPayment", jdbcType = JdbcType.INTEGER),
             @Result(column = "createdBy", property = "createdby", jdbcType = JdbcType.BIGINT),
             @Result(column = "creationDate", property = "creationdate", jdbcType = JdbcType.TIMESTAMP)
     })
@@ -83,9 +83,9 @@ public interface BillMapper extends ObjectCrudMapper<Bill> {
             @Result(column = "id", property = "id", jdbcType = JdbcType.BIGINT, id = true),
             @Result(column = "code", property = "code", jdbcType = JdbcType.VARCHAR),
             @Result(column = "goods_id", property = "goodsId", jdbcType = JdbcType.BIGINT),
-            @Result(column = "goodsCount", property = "goodscount", jdbcType = JdbcType.INTEGER),
-            @Result(column = "totalPrice", property = "totalprice", jdbcType = JdbcType.DECIMAL),
-            @Result(column = "isPayment", property = "ispayment", jdbcType = JdbcType.INTEGER),
+            @Result(column = "goodsCount", property = "goodsCount", jdbcType = JdbcType.INTEGER),
+            @Result(column = "totalPrice", property = "totalPrice", jdbcType = JdbcType.DECIMAL),
+            @Result(column = "isPayment", property = "isPayment", jdbcType = JdbcType.INTEGER),
             @Result(column = "createdBy", property = "createdby", jdbcType = JdbcType.BIGINT),
             @Result(column = "creationDate", property = "creationdate", jdbcType = JdbcType.TIMESTAMP)
     })
@@ -109,9 +109,9 @@ public interface BillMapper extends ObjectCrudMapper<Bill> {
             "update smbms_bill",
             "set code = #{code,jdbcType=VARCHAR},",
             "goods_id = #{goodsId,jdbcType=BIGINT},",
-            "goodsCount = #{goodscount,jdbcType=INTEGER},",
-            "totalPrice = #{totalprice,jdbcType=DECIMAL},",
-            "isPayment = #{ispayment,jdbcType=INTEGER},",
+            "goodsCount = #{goodsCount,jdbcType=INTEGER},",
+            "totalPrice = #{totalPrice,jdbcType=DECIMAL},",
+            "isPayment = #{isPayment,jdbcType=INTEGER},",
             "createdBy = #{createdby,jdbcType=BIGINT},",
             "creationDate = #{creationdate,jdbcType=TIMESTAMP}",
             "where id = #{id,jdbcType=BIGINT}"
