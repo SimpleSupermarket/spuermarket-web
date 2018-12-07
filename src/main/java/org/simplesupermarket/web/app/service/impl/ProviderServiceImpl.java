@@ -3,6 +3,7 @@ package org.simplesupermarket.web.app.service.impl;
 import org.simplesupermarket.web.app.domain.ProviderView;
 import org.simplesupermarket.web.app.service.AbstractSuperServiceImpl;
 import org.simplesupermarket.web.app.service.ProviderService;
+import org.simplesupermarket.web.app.domain.annotation.ViewClass;
 import org.simplesupermarket.web.db.mapper.ProviderMapper;
 import org.simplesupermarket.web.db.mapper.UserMapper;
 import org.simplesupermarket.web.db.model.Provider;
@@ -28,7 +29,8 @@ public class ProviderServiceImpl extends AbstractSuperServiceImpl<Provider> impl
     private UserMapper userMapper;
 
     @Override
-    public List getList(Map<String, String> sd) {
+    @ViewClass(ProviderView.class)
+    public List getDbData(Map<String, String> sd) {
         String providerName = sd.get("provider");
         if (StringUtils.isEmpty(providerName) || providerName.length() > 100) {
             providerName = null;

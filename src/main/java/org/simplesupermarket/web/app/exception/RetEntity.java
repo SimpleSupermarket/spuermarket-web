@@ -1,4 +1,4 @@
-package org.simplesupermarket.web.app.controller.common.exception;
+package org.simplesupermarket.web.app.exception;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 

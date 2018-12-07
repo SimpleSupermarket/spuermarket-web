@@ -1,5 +1,6 @@
 package org.simplesupermarket.web.app.domain;
 
+import org.simplesupermarket.web.app.domain.annotation.FromDb;
 import org.simplesupermarket.web.db.model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,7 +25,7 @@ public class ProviderView {
     private String address;
 
     private String fax;
-
+    @FromDb
     private User createdby;
 
     private String creationdate;

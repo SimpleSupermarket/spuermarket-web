@@ -3,6 +3,7 @@ package org.simplesupermarket.web.app.service.impl;
 import org.simplesupermarket.web.app.domain.GoodsView;
 import org.simplesupermarket.web.app.service.AbstractSuperServiceImpl;
 import org.simplesupermarket.web.app.service.GoodsService;
+import org.simplesupermarket.web.app.domain.annotation.ViewClass;
 import org.simplesupermarket.web.db.mapper.GoodsMapper;
 import org.simplesupermarket.web.db.mapper.ProviderMapper;
 import org.simplesupermarket.web.db.mapper.UserMapper;
@@ -33,7 +34,8 @@ public class GoodsServiceImpl extends AbstractSuperServiceImpl<Goods> implements
 
 
     @Override
-    public List getList(Map<String, String> sd) {
+    @ViewClass(GoodsView.class)
+    public List getDbData(Map<String, String> sd) {
         String goodsNameStr = sd.get("goodsName");
         if (StringUtils.isEmpty(goodsNameStr) || goodsNameStr.length()>100 ) {
             goodsNameStr = null;

@@ -3,6 +3,7 @@ package org.simplesupermarket.web.app.service.impl;
 import org.simplesupermarket.web.app.domain.BillView;
 import org.simplesupermarket.web.app.service.AbstractSuperServiceImpl;
 import org.simplesupermarket.web.app.service.BillService;
+import org.simplesupermarket.web.app.domain.annotation.ViewClass;
 import org.simplesupermarket.web.db.mapper.BillMapper;
 import org.simplesupermarket.web.db.mapper.GoodsMapper;
 import org.simplesupermarket.web.db.mapper.UserMapper;
@@ -34,8 +35,9 @@ public class BillServiceImpl extends AbstractSuperServiceImpl<Bill> implements B
     /**
      * 参数验证
      */
-   // @Override
-    public List getList1(Map<String, String> sd) {
+    @Override
+    @ViewClass(BillView.class)
+    public List getDbData(Map<String, String> sd) {
         String goodsNameStr = sd.get("goodsName");
         String isPaymentStr = sd.get("isPayment");
         String providerStr = sd.get("provider");

@@ -3,7 +3,7 @@
 * <p>Copyright: Copyright (c) 2018</p>
 * <p>Company: www.kuliao.com</p>
 */ 
-package org.simplesupermarket.web.app.controller.common.exception;
+package org.simplesupermarket.web.app.exception;
 
 /**  
 * Description: 错误码枚举类

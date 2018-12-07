@@ -52,7 +52,7 @@ public abstract class AbstractSuperController<T> {
     JsonParser jsonParser;
 
     @GetMapping("/list")
-    public SearchData list(SearchData searchData) {
+    public final SearchData  list(SearchData searchData) {
         if (LOGGER.isInfoEnabled()) {
             LOGGER.info("{}查询 {}", this.getClass().getSimpleName(), searchData);
         }

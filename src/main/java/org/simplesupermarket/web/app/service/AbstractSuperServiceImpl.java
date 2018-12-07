@@ -1,7 +1,10 @@
 package org.simplesupermarket.web.app.service;
 
 
+import org.simplesupermarket.web.app.exception.BusinessException;
+import org.simplesupermarket.web.app.domain.annotation.FromDb;
 import org.simplesupermarket.web.app.service.datahandle.DataHandle;
+import org.simplesupermarket.web.app.domain.annotation.ViewClass;
 import org.simplesupermarket.web.app.service.datahandle.standard.StandardDataHandle;
 import org.simplesupermarket.web.auth.UserDetail;
 import org.simplesupermarket.web.db.ObjectCrudMapper;
@@ -9,11 +12,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.List;
-import java.util.Map;
-import java.util.TimeZone;
+import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @version 1.0
@@ -63,9 +67,45 @@ public abstract class AbstractSuperServiceImpl<T> {
     }
 
     public List getList(Map<String, String> sd) {
+        List<T> list = getDbData(sd);
+        if (list == null || list.isEmpty()) {
+            return null;
+        }
+        try {
+            return model2View(list);
+        } catch (IllegalAccessException |InstantiationException e) {
+            throw new BusinessException("99999",e.getMessage());
+        }
+    }
+    abstract protected List<T> getDbData(Map<String, String> sd);
 
-        return this.mapper.selectAll();
+    //TODO
+    protected List model2View(List<T> dbData) throws IllegalAccessException, InstantiationException {
+        Method getDbDataMethod = null;
+        try {
+             getDbDataMethod = this.getClass().getMethod("getDbData", Map.class);
+             if(getDbDataMethod == null)return null;
+        } catch (NoSuchMethodException e) {
+           throw new BusinessException("99999",e.getMessage());
+        }
+        Class viewClass = getDbDataMethod.getAnnotation(ViewClass.class).value();
+        //TODO model -> view todo
+        //viewClass.newInstance();
+        List viewList = new ArrayList(dbData.size());
+        dbData.forEach(v->{
+            //id = v.getId();
+        });
+        //TODO view.model = model
+        Map<Field,Map<Integer,Integer>> fieldMapMap = new HashMap();
+        Field[] fields = viewClass.getDeclaredFields();
+        for (Field field : fields) {
+            if(field.getAnnotation(FromDb.class)!=null){
+                fieldMapMap.put(field,new ConcurrentHashMap<>());
+            }
+        }
 
+
+        return null;
     }
 
 

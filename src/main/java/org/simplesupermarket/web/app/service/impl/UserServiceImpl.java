@@ -4,6 +4,7 @@ import org.simplesupermarket.web.app.domain.UserView;
 import org.simplesupermarket.web.app.service.AbstractSuperServiceImpl;
 import org.simplesupermarket.web.app.service.OwnService;
 import org.simplesupermarket.web.app.service.UserService;
+import org.simplesupermarket.web.app.domain.annotation.ViewClass;
 import org.simplesupermarket.web.auth.UserDetail;
 import org.simplesupermarket.web.db.mapper.RoleMapper;
 import org.simplesupermarket.web.db.mapper.UserMapper;
@@ -14,7 +15,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -53,7 +53,8 @@ public class UserServiceImpl extends AbstractSuperServiceImpl<User> implements O
     }
 
     @Override
-    public List getList(Map<String, String> sd) {
+    @ViewClass(UserView.class)
+    public List getDbData(Map<String, String> sd) {
         String name = sd.get("name");
         if (StringUtils.isEmpty(name) || name.length() > 100) {
             name = null;

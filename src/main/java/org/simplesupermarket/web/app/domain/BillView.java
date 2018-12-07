@@ -1,8 +1,8 @@
 package org.simplesupermarket.web.app.domain;
+import org.simplesupermarket.web.app.domain.annotation.FromDb;
 import org.simplesupermarket.web.db.model.Goods;
 import org.simplesupermarket.web.db.model.User;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 /**
  *
  * @date 2018年12月06日
@@ -11,10 +11,12 @@ import org.slf4j.LoggerFactory;
 public class BillView {
     private Long id;
     private String code;
+    @FromDb
     private Goods goods;
     private Integer goodscount;
     private String totalprice;
     private String ispayment;
+    @FromDb
     private User createdby;
     private String creationdate;
 

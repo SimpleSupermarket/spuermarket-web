@@ -1,5 +1,6 @@
 package org.simplesupermarket.web.app.domain;
 
+import org.simplesupermarket.web.app.domain.annotation.FromDb;
 import org.simplesupermarket.web.db.model.Role;
 import org.simplesupermarket.web.db.model.User;
 import org.slf4j.Logger;
@@ -29,7 +30,7 @@ public class UserView {
     private String phone;
 
     private String address;
-
+    @FromDb
     private Role roleId;
 
     private User createdby;

@@ -1,4 +1,5 @@
 package org.simplesupermarket.web.app.domain;
+import org.simplesupermarket.web.app.domain.annotation.FromDb;
 import org.simplesupermarket.web.db.model.Provider;
 import org.simplesupermarket.web.db.model.User;
 
@@ -17,7 +18,7 @@ public class GoodsView {
     private String price;
 
     private String unit;
-
+    @FromDb
     private Provider provider;
 
     private Integer stock;
