@@ -63,6 +63,20 @@ public interface RoleMapper extends ObjectCrudMapper<Role> {
     })
     List<Role> selectByIds(@Param("ids") List<Long> id);
 
+
+    @Results({
+            @Result(column="id", property="id", jdbcType=JdbcType.BIGINT, id=true),
+            @Result(column="code", property="code", jdbcType=JdbcType.VARCHAR),
+            @Result(column="name", property="name", jdbcType=JdbcType.VARCHAR),
+            @Result(column="createdBy", property="createdby", jdbcType=JdbcType.BIGINT),
+            @Result(column="creationDate", property="creationdate", jdbcType=JdbcType.TIMESTAMP)
+    })
+    @Select({
+            " select",
+            "id, code, name, createdBy, creationDate",
+            "from smbms_role"
+    })
+    List<Role> selectAll();
     @UpdateProvider(type=RoleSqlProvider.class, method="updateByPrimaryKeySelective")
     int updateByPrimaryKeySelective(Role record);
 

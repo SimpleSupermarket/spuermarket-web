@@ -23,7 +23,8 @@ public class GoodsView {
     private String price;
 
     private String unit;
-    @FromDb
+
+    @FromDb("providerId")
     private Provider provider;
 
     private Integer stock;

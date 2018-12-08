@@ -48,16 +48,5 @@ public class GoodsServiceImpl extends AbstractSuperServiceImpl<Goods> implements
 
         return goodsMapper.selectAll(goodsNameStr,providerName);
 
-     /*   goodsList.forEach(goods -> {
-            GoodsView billView = new GoodsView();
-            BeanUtils.copyProperties(goods, billView);
-            billView.setPrice(goods.getPrice().setScale(2).toString());
-            billView.setCreationdate(super.format.format(goods.getCreationdate()));
-            mapProvider.put(goods.getProviderId(), goods.getId());
-            mapUser.put(goods.getCreatedby(), goods.getId());
-            map.put(billView.getId(), billView);
-            list.add(billView);
-        });*/
-
     }
 }

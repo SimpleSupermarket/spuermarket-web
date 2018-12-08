@@ -16,7 +16,7 @@ import java.text.SimpleDateFormat;
 public class BillView {
     private Long id;
     private String code;
-    @FromDb
+    @FromDb("goodsId")
     private Goods goods;
     private Integer goodscount;
     private String totalprice;
@@ -29,6 +29,7 @@ public class BillView {
 
     public BillView(Bill bill) {
         BeanUtils.copyProperties(bill,this);
+        goodscount = bill.getGoodsCount();
         this.setIspayment(PAYMENT.getPayment(bill.getIsPayment()));
         this.setTotalprice(bill.getTotalPrice().setScale(2).toString());
         this.setCreationdate(format.format(bill.getCreationdate()));

@@ -4,9 +4,9 @@ spring:
     application:
         name: supermarket
     datasource:
-        url: jdbc:mysql://127.0.0.1:3306/smbms?characterEncoding=UTF-8&useSSL=false
-        username: root
-        password: root
+        url: jdbc:mysql://193.112.68.218:3306/smbms?characterEncoding=UTF-8&useSSL=false
+        username: smbms
+        password: smbms123
         driver-class-name: com.mysql.jdbc.Driver
         hikari:
           connection-timeout: 250
