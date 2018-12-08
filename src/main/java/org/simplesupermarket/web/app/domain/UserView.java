@@ -5,7 +5,10 @@ import org.simplesupermarket.web.db.model.Role;
 import org.simplesupermarket.web.db.model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -24,7 +27,7 @@ public class UserView {
 
     private String gender;
 
-    private String birthday;
+
     private Integer age;
 
     private String phone;
@@ -32,12 +35,21 @@ public class UserView {
     private String address;
     @FromDb
     private Role roleId;
-
+    @FromDb
     private User createdby;
 
     private String creationdate;
 
     private String state;
+
+    protected final DateFormat format = new SimpleDateFormat("yyyy年MM月dd日HH时");
+    public UserView(User user){
+        BeanUtils.copyProperties(user, this);
+        this.setCreationdate(format.format(user.getCreationdate()));
+        this.setGender(user.getGender() == 1 ? "女" : "男");
+        this.setState(user.getState() == 0 ? "正常" : "停用");
+        this.setAge(user.getBirthday());
+    }
 
     public Long getId() {
         return id;
@@ -108,13 +120,6 @@ public class UserView {
         this.gender = gender;
     }
 
-    public String getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(String birthday) {
-        this.birthday = birthday;
-    }
 
     public String getPhone() {
         return phone;

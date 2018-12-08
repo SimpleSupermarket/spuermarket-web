@@ -8,5 +8,5 @@ import java.lang.annotation.*;
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
 public @interface ViewClass {
-    Class<?> value();
+    Class<?> value(); //TODO not null
 }

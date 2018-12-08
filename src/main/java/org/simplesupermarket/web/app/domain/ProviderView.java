@@ -1,9 +1,14 @@
 package org.simplesupermarket.web.app.domain;
 
 import org.simplesupermarket.web.app.domain.annotation.FromDb;
+import org.simplesupermarket.web.db.model.Provider;
 import org.simplesupermarket.web.db.model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 /**
  *
@@ -30,6 +35,11 @@ public class ProviderView {
 
     private String creationdate;
 
+    protected final DateFormat format = new SimpleDateFormat("yyyy年MM月dd日HH时");
+    public ProviderView(Provider provider){
+        BeanUtils.copyProperties(provider,this);
+        this.setCreationdate(format.format(provider.getCreationdate()));
+    }
     public Long getId() {
         return id;
     }

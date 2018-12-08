@@ -17,9 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
-
 import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @version 1.0
@@ -65,7 +63,8 @@ public class UserServiceImpl extends AbstractSuperServiceImpl<User> implements O
     public List getList(String name) {
         List<UserView> list = new Vector<>();
         List<User> userList = userMapper.selectAll(name, null);
-        if(userList==null || userList.isEmpty())return new ArrayList();
+        return userList;
+   /*     if(userList==null || userList.isEmpty())return new ArrayList();
         Map<Long, UserView> map = new ConcurrentHashMap();
         Map<Long, Long> mapUser = new ConcurrentHashMap();
         Map<Long, Long> mapRole = new ConcurrentHashMap();
@@ -94,6 +93,6 @@ public class UserServiceImpl extends AbstractSuperServiceImpl<User> implements O
                     Long mapId = mapUser.get(role.getId());
                     map.get(mapId).setRoleId(role);
                 });
-        return new ArrayList(map.values());
+        return new ArrayList(map.values());*/
     }
 }

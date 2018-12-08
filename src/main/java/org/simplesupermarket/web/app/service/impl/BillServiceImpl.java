@@ -64,52 +64,10 @@ public class BillServiceImpl extends AbstractSuperServiceImpl<Bill> implements B
 
     //
     public List getList(String goodsNameStr, Integer isPayment, String providerName) {
-        List<BillView> list = new Vector<>();
-        List<Bill> billList = billMapper.selectAll(isPayment, goodsNameStr, providerName);
-        if(billList==null || billList.isEmpty())return new ArrayList();
-        Map<Long, BillView> map = new ConcurrentHashMap();
-        Map<Long, Long> mapGoods = new ConcurrentHashMap();
-        Map<Long, Long> mapUser = new ConcurrentHashMap();
-        billList.forEach(bill -> {
-            BillView billView = new BillView();
-            BeanUtils.copyProperties(bill, billView);
-            billView.setIspayment(PAYMENT.getPayment(bill.getIsPayment()));
-            billView.setTotalprice(bill.getTotalPrice().setScale(2).toString());
-            billView.setCreationdate(super.format.format(bill.getCreationdate()));
-            mapGoods.put(bill.getGoodsId(), bill.getId());
-            mapUser.put(bill.getCreatedby(), bill.getId());
-            map.put(billView.getId(), billView);
-            list.add(billView);
-        });
-        goodsMapper.selectByIds(
-                Arrays.asList(mapGoods.keySet().toArray(new Long[0])))
-                .forEach(goods -> {
-                    Long mapId = mapGoods.get(goods.getId());
-                    map.get(mapId).setGoods(goods);
-                });
-        userMapper.selectByIds(
-                Arrays.asList(mapUser.keySet().toArray(new Long[0])))
-                .forEach(user -> {
-                    Long mapId = mapUser.get(user.getId());
-                    map.get(mapId).setCreatedby(user);
-                });
-        return new ArrayList(map.values());
+          return billMapper.selectAll(isPayment, goodsNameStr, providerName);
+
+
     }
 
-    public static class PAYMENT {
-        public static final int YESPAY = 2;
-        public static final int NOPAY = 1;
-
-        public static String getPayment(int s) {
-            switch (s) {
-                case 1:
-                    return "未支付";
-                case 2:
-                    return "已支付";
-                default:
-                    return "未知";
-            }
-        }
-    }
 
 }

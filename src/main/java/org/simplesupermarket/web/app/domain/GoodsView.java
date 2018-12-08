@@ -1,7 +1,12 @@
 package org.simplesupermarket.web.app.domain;
 import org.simplesupermarket.web.app.domain.annotation.FromDb;
+import org.simplesupermarket.web.db.model.Goods;
 import org.simplesupermarket.web.db.model.Provider;
 import org.simplesupermarket.web.db.model.User;
+import org.springframework.beans.BeanUtils;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 /**
  *
@@ -27,6 +32,13 @@ public class GoodsView {
 
     private String creationdate;
 
+    protected final DateFormat format = new SimpleDateFormat("yyyy年MM月dd日HH时");
+
+    public GoodsView(Goods goods){
+        BeanUtils.copyProperties(goods,this);
+        this.setPrice(goods.getPrice().setScale(2).toString());
+        this.setCreationdate(format.format(goods.getCreationdate()));
+    }
     public Long getId() {
         return id;
     }

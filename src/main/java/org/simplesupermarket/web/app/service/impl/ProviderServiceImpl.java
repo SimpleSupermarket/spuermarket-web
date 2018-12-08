@@ -41,27 +41,18 @@ public class ProviderServiceImpl extends AbstractSuperServiceImpl<Provider> impl
 
     public List getList(String providerName) {
 
-        List<ProviderView> list = new Vector<>();
-        List<Provider> providerList = providerMapper.selectAll(providerName);
-        if(providerList==null || providerList.isEmpty())return new ArrayList();
-        Map<Long, ProviderView> map = new ConcurrentHashMap();
-        Map<Long, Long> mapUser = new ConcurrentHashMap();
-        providerList.forEach(provider -> {
+        return providerMapper.selectAll(providerName);
+
+     /*   providerList.forEach(provider -> {
             ProviderView billView = new ProviderView();
             BeanUtils.copyProperties(provider, billView);
             billView.setCreationdate(super.format.format(provider.getCreationdate()));
             mapUser.put(provider.getCreatedby(), provider.getId());
             map.put(billView.getId(), billView);
             list.add(billView);
-        });
+        });*/
 
-        userMapper.selectByIds(
-                Arrays.asList(mapUser.keySet().toArray(new Long[0])))
-                .forEach(user -> {
-                    Long mapId = mapUser.get(user.getId());
-                    map.get(mapId).setCreatedby(user);
-                });
-        return new ArrayList(map.values());
+
     }
 
 }

@@ -43,7 +43,6 @@ public class LoginConfigurer <H extends HttpSecurityBuilder<H>> extends
             Field field =  a.getDeclaredField("authenticationEntryPoint");
             field.setAccessible(true);
             field.set(this,new LoginAuthenticationEntryPoint(loginPage));
-            LOGGER.error(field.getName());
         } catch (NoSuchFieldException | IllegalAccessException e) {
             e.printStackTrace();
         }

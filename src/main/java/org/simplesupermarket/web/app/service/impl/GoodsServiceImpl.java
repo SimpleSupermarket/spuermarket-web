@@ -46,13 +46,9 @@ public class GoodsServiceImpl extends AbstractSuperServiceImpl<Goods> implements
     @Override
     public List getList(String goodsNameStr, String providerName) {
 
-        List<GoodsView> list = new Vector<>();
-        List<Goods> goodsList = goodsMapper.selectAll(goodsNameStr,providerName);
-        if(goodsList==null || goodsList.isEmpty())return new ArrayList();
-        Map<Long, GoodsView> map = new ConcurrentHashMap();
-        Map<Long, Long> mapProvider = new ConcurrentHashMap();
-        Map<Long, Long> mapUser = new ConcurrentHashMap();
-        goodsList.forEach(goods -> {
+        return goodsMapper.selectAll(goodsNameStr,providerName);
+
+     /*   goodsList.forEach(goods -> {
             GoodsView billView = new GoodsView();
             BeanUtils.copyProperties(goods, billView);
             billView.setPrice(goods.getPrice().setScale(2).toString());
@@ -61,19 +57,7 @@ public class GoodsServiceImpl extends AbstractSuperServiceImpl<Goods> implements
             mapUser.put(goods.getCreatedby(), goods.getId());
             map.put(billView.getId(), billView);
             list.add(billView);
-        });
-        providerMapper.selectByIds(
-                Arrays.asList(mapProvider.keySet().toArray(new Long[0])))
-                .forEach(goods -> {
-                    Long mapId = mapProvider.get(goods.getId());
-                    map.get(mapId).setProvider(goods);
-                });
-        userMapper.selectByIds(
-                Arrays.asList(mapUser.keySet().toArray(new Long[0])))
-                .forEach(user -> {
-                    Long mapId = mapUser.get(user.getId());
-                    map.get(mapId).setCreatedby(user);
-                });
-        return new ArrayList(map.values());
+        });*/
+
     }
 }
