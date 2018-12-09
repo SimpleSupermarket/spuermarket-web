@@ -10,5 +10,10 @@ spring:
         driver-class-name: com.mysql.jdbc.Driver
         hikari:
           connection-timeout: 250
+          max-lifetime: 30000
+          connection-test-query: SELECT 1
     jackson:
       default-property-inclusion: non_null
+mybatis:
+  configuration:
+    default-statement-timeout: 250
