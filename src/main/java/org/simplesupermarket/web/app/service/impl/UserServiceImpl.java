@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
+
 import java.util.*;
 
 /**
@@ -40,7 +41,7 @@ public class UserServiceImpl extends AbstractSuperServiceImpl<User> implements O
                 .filter(v -> v.getPassword().equals(password))
                 .filter(v -> v.getState().equals(0))
                 .findFirst().orElse(null);
-        if(user == null)return null;
+        if (user == null) return null;
         UserDetail userDetail = new UserDetail();
         BeanUtils.copyProperties(user, userDetail);
         List<Role> roles = new ArrayList<>(1);
@@ -61,38 +62,17 @@ public class UserServiceImpl extends AbstractSuperServiceImpl<User> implements O
     }
 
     public List getList(String name) {
-        List<UserView> list = new Vector<>();
-        List<User> userList = userMapper.selectAll(name, null);
-        return userList;
-   /*     if(userList==null || userList.isEmpty())return new ArrayList();
-        Map<Long, UserView> map = new ConcurrentHashMap();
-        Map<Long, Long> mapUser = new ConcurrentHashMap();
-        Map<Long, Long> mapRole = new ConcurrentHashMap();
-        userList.forEach(user -> {
-            UserView userView = new UserView();
-            BeanUtils.copyProperties(user, userView);
-            userView.setCreationdate(super.format.format(user.getCreationdate()));
-            userView.setGender(user.getGender() == 1 ? "女" : "男");
-            userView.setState(user.getState() == 0 ? "正常" : "停用");
-            userView.setAge(user.getBirthday());
-            mapUser.put(user.getCreatedby(), user.getId());
-            mapRole.put(user.getRoleId(), user.getId());
-            map.put(user.getId(), userView);
-            list.add(userView);
-        });
+        return userMapper.selectAll(name, null);
+    }
 
-        userMapper.selectByIds(
-                Arrays.asList(mapUser.keySet().toArray(new Long[0])))
-                .forEach(user -> {
-                    Long mapId = mapUser.get(user.getId());
-                    map.get(mapId).setCreatedby(user);
-                });
-        roleMapper.selectByIds(
-                Arrays.asList(mapUser.keySet().toArray(new Long[0])))
-                .forEach(role -> {
-                    Long mapId = mapUser.get(role.getId());
-                    map.get(mapId).setRoleId(role);
-                });
-        return new ArrayList(map.values());*/
+    @Override
+    public Boolean repassword(String oldPassword, String newPassword, Long userId) {
+        User user = userMapper.selectByPrimaryKey(userId);
+        if(user.getPassword().equals(oldPassword)){
+            user.setPassword(newPassword);
+            userMapper.updateByPrimaryKeySelective(user);
+            return true;
+        }
+        return false;
     }
 }

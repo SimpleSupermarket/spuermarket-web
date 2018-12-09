@@ -26,7 +26,7 @@ public interface UserMapper extends ObjectCrudMapper<User> {
         "#{name,jdbcType=VARCHAR}, #{password,jdbcType=CHAR}, #{gender,jdbcType=INTEGER}, ",
         "#{birthday,jdbcType=DATE}, #{phone,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, ",
         "#{roleId,jdbcType=BIGINT}, #{createdby,jdbcType=BIGINT}, ",
-        "#{creationdate,jdbcType=TIMESTAMP}, #{state,jdbcType=INTEGER})"
+        "#{creationdate,jdbcType=TIMESTAMP}, '0')"
     })
     int insert(User record);
 
